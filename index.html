@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Vossenbergh Vegan Farm - Educatieve Vegan Boerderij & Borrelplank Keuken Game voor Carmen" />
+  <title>🌿 Vossenbergh Vegan Farm // Educatieve Boerderij & Keuken Game</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app" class="game-container">
+    
+    <!-- Top Bar Navigation -->
+    <header class="top-nav">
+      <div class="brand">
+        <span class="brand-icon">🌱</span>
+        <div class="brand-titles">
+          <h1>Vossenbergh Vegan Farm</h1>
+          <span class="sub">Landgoed De Vossenbergh • GitHub Pages Editie</span>
+        </div>
+      </div>
+
+      <!-- Resource Indicators -->
+      <div class="resources-bar">
+        <div class="res-card" id="res-land">
+          <span class="res-icon">📐</span>
+          <div class="res-info">
+            <span class="res-label">Weide Landbeheer</span>
+            <span class="res-value" id="land-used-val">0 / 100 m²</span>
+          </div>
+          <div class="progress-mini"><div class="progress-bar-inner" id="land-bar" style="width: 0%"></div></div>
+        </div>
+
+        <div class="res-card">
+          <span class="res-icon">⭐</span>
+          <div class="res-info">
+            <span class="res-label">Chef Sterren</span>
+            <span class="res-value" id="stars-val">120</span>
+          </div>
+        </div>
+
+        <div class="res-card">
+          <span class="res-icon">✨</span>
+          <div class="res-info">
+            <span class="res-label">Super-Humus</span>
+            <span class="res-value" id="humus-val">1 zak</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <button id="btn-sound" class="btn-icon" title="Geluid aan/uit">🔊</button>
+        <button id="btn-real-recipe" class="btn-real-kitchen">
+          🍳 Echte Keuken Unlocks (<span id="unlock-count">0</span>)
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Game Grid & Sidebar -->
+    <main class="game-layout">
+      
+      <!-- Left Panel: Crop Selector & Action Tools -->
+      <aside class="sidebar glass-panel">
+        <nav class="sidebar-tabs">
+          <button class="tab-link active" data-tab="crops">🌾 Gewassen</button>
+          <button class="tab-link" data-tab="recipes">🧀 Borrelplank Keuken</button>
+          <button class="tab-link" data-tab="detective">🔍 E-Nummer Detective</button>
+          <button class="tab-link" data-tab="compost">♻️ Compost & Ruil</button>
+        </nav>
+
+        <div class="tab-body">
+          
+          <!-- TAB 1: CROPS & SEEDS -->
+          <div class="tab-content active" id="tab-crops">
+            <h3 class="panel-heading">Gewassen & Kas-Teelt (per 10 m²)</h3>
+            <p class="panel-sub">Kies gewassen voor de <strong>Volle Grond</strong> (Weide) of <strong>De Vossenbergh Kas</strong>.</p>
+
+            <div class="crop-grid" id="crop-selector">
+              <!-- Dynamically rendered by app.js -->
+            </div>
+
+            <div class="quick-actions">
+              <button id="btn-harvest-all" class="btn-primary-glow">🌾 Oogst Alle Volgroeide Gewassen</button>
+            </div>
+          </div>
+
+          <!-- TAB 2: KITCHEN & RECIPES -->
+          <div class="tab-content" id="tab-recipes">
+            <h3 class="panel-heading">De Vegan Borrelplank Keuken</h3>
+            <p class="panel-sub">Combineer verhoudingen van bekende supermarktproducten!</p>
+
+            <div class="recipe-cards-list">
+              <!-- Recipe 1 -->
+              <div class="recipe-card">
+                <div class="recipe-header">
+                  <span class="recipe-icon">🧀</span>
+                  <div>
+                    <h4>Heks'nkaas Vegan</h4>
+                    <span class="recipe-tag">Kruidensmeerkaas</span>
+                  </div>
+                </div>
+                <div class="recipe-ratio-list">
+                  <span class="ratio-item">🌿 20m² Tuinkruiden</span>
+                  <span class="ratio-item">🧄 20m² Knoflook</span>
+                  <span class="ratio-item">🍋 10m² Citroen (Kas)</span>
+                  <span class="ratio-item">🌻 20m² Zonnebloem</span>
+                </div>
+                <button class="btn-cook" data-recipe="heksnkaas">Bereid Heks'nkaas Vegan</button>
+              </div>
+
+              <!-- Recipe 2 -->
+              <div class="recipe-card">
+                <div class="recipe-header">
+                  <span class="recipe-icon">🌶️</span>
+                  <div>
+                    <h4>Maza Muhammara</h4>
+                    <span class="recipe-tag">Paprika-Walnoot Dip</span>
+                  </div>
+                </div>
+                <div class="recipe-ratio-list">
+                  <span class="ratio-item">🫑 30m² Paprika</span>
+                  <span class="ratio-item">🧄 10m² Knoflook</span>
+                  <span class="ratio-item">🌰 20m² Walnoot</span>
+                </div>
+                <button class="btn-cook" data-recipe="muhammara">Mix Maza Muhammara</button>
+              </div>
+
+              <!-- Recipe 3 -->
+              <div class="recipe-card">
+                <div class="recipe-header">
+                  <span class="recipe-icon">🍆</span>
+                  <div>
+                    <h4>AH Terra Baba Ganoush</h4>
+                    <span class="recipe-tag">Auberginedip</span>
+                  </div>
+                </div>
+                <div class="recipe-ratio-list">
+                  <span class="ratio-item">🍆 30m² Aubergine (Kas)</span>
+                  <span class="ratio-item">🧄 10m² Knoflook</span>
+                  <span class="ratio-item">🍋 10m² Citroen (Kas)</span>
+                  <span class="ratio-item">🌿 10m² Tuinkruiden</span>
+                </div>
+                <button class="btn-cook" data-recipe="babaganoush">Grill Baba Ganoush</button>
+              </div>
+
+              <!-- Recipe 4 -->
+              <div class="recipe-card">
+                <div class="recipe-header">
+                  <span class="recipe-icon">🍘</span>
+                  <div>
+                    <h4>Samasaya Cassave Kroepoek</h4>
+                    <span class="recipe-tag">Pikant</span>
+                  </div>
+                </div>
+                <div class="recipe-ratio-list">
+                  <span class="ratio-item">🍠 30m² Cassave (Kas)</span>
+                  <span class="ratio-item">🫑 20m² Pepers</span>
+                  <span class="ratio-item">🧄 10m² Knoflook</span>
+                </div>
+                <button class="btn-cook" data-recipe="kroepoek">Wok Cassave Kroepoek</button>
+              </div>
+
+              <!-- Recipe 5 -->
+              <div class="recipe-card">
+                <div class="recipe-header">
+                  <span class="recipe-icon">🥖</span>
+                  <div>
+                    <h4>Haust Party Toastjes & LU Crackers</h4>
+                    <span class="recipe-tag">Kruidentoast</span>
+                  </div>
+                </div>
+                <div class="recipe-ratio-list">
+                  <span class="ratio-item">🥖 40m² Spelt/Tarwe</span>
+                  <span class="ratio-item">🌻 20m² Zonnebloem</span>
+                  <span class="ratio-item">🌿 10m² Tuinkruiden</span>
+                </div>
+                <button class="btn-cook" data-recipe="toastjes">Bak Party Toastjes</button>
+              </div>
+
+              <!-- Recipe 6 -->
+              <div class="recipe-card">
+                <div class="recipe-header">
+                  <span class="recipe-icon">🫘</span>
+                  <div>
+                    <h4>BioToday Lentil Chips</h4>
+                    <span class="recipe-tag">Linzenchips</span>
+                  </div>
+                </div>
+                <div class="recipe-ratio-list">
+                  <span class="ratio-item">🫘 40m² Linzen</span>
+                  <span class="ratio-item">🌻 20m² Zonnebloem</span>
+                </div>
+                <button class="btn-cook" data-recipe="lentilchips">Poef Linzenchips</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: E-NUMBER DETECTIVE -->
+          <div class="tab-content" id="tab-detective">
+            <h3 class="panel-heading">🔍 E-Nummer Detective</h3>
+            <p class="panel-sub">Help Carmen verborgen dierlijke stoffen in borrelhapjes te ontmaskeren!</p>
+
+            <div class="quiz-card" id="quiz-box">
+              <div class="quiz-badge">Challenge #<span id="quiz-num">1</span></div>
+              <h4 id="quiz-question">Vraag laden...</h4>
+              <div class="quiz-options" id="quiz-options"></div>
+              <div class="quiz-feedback hidden" id="quiz-feedback"></div>
+              <button class="btn-secondary hidden" id="btn-next-quiz">Volgende Vraag ➔</button>
+            </div>
+          </div>
+
+          <!-- TAB 4: COMPOST & RUILBANK -->
+          <div class="tab-content" id="tab-compost">
+            <h3 class="panel-heading">♻️ Nul Afval & Ruilbank</h3>
+            <p class="panel-sub">Te veel gewas in de weide? Zet het om in Super-Humus of voer de dieren!</p>
+
+            <div class="compost-box">
+              <h4>De Vossenbergh Bio-Composteerder</h4>
+              <p>Zet 20 m² overtollig gewas om in 1 zak <strong>Super-Humus</strong> (halveert groeitijd van het volgende gewas!).</p>
+              <div class="compost-controls">
+                <select id="compost-crop-select" class="custom-select"></select>
+                <button id="btn-compost-now" class="btn-secondary">Composteer 20 m²</button>
+              </div>
+            </div>
+
+            <hr class="divider" />
+
+            <div class="sanctuary-box">
+              <h4>🐮 Vossenbergh Dierenopvang</h4>
+              <p>Voer overtollige gewassen aan varkentje Bram en koe Bella voor extra Chef-Sterren!</p>
+              <button id="btn-feed-animals" class="btn-tertiary">Voer Dieren (10 m² Groenten)</button>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+
+      <!-- Center & Right: Land Grid Viewport with Drone Aerial Background -->
+      <section class="viewport-section">
+        
+        <div class="farm-status-header">
+          <div class="status-left">
+            <h2>🏡 Landgoed De Vossenbergh <span class="badge-live">WEIDE MOESTUIN</span></h2>
+            <p>Starter Kavel: <strong>10 m²</strong> onderin de weide (uitbreidbaar door maaltijden te bereiden!).</p>
+          </div>
+          <div class="inventory-pill">
+            <span>📦 Voorraadkast:</span>
+            <div id="inventory-tags" class="inventory-tags">
+              <span class="inv-tag">Geen voorraad</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="land-grid-container">
+          <div class="drone-map-overlay-banner">
+            📍 LUCHTFOTO LANDGOED DE VOSSENBERGH — DE WEIDE OONDERIN (MOESTUIN 10 m²)
+          </div>
+
+          <div class="land-grid" id="land-grid">
+            <!-- 10 Tiles generated via JS -->
+          </div>
+        </div>
+
+        <div class="game-log-bar" id="game-log">
+          <span class="log-time">21:20</span>
+          <span class="log-text">Welkom op Landgoed De Vossenbergh! GitHub Pages Static Edition Actief.</span>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- Modal: Real Kitchen Recipe Unlock -->
+    <div id="recipe-modal" class="modal-backdrop hidden">
+      <div class="modal-card">
+        <button class="modal-close" id="modal-close-btn">&times;</button>
+
+        <div class="modal-header">
+          <span class="modal-icon">🍳</span>
+          <h2>Gefeliciteerd Carmen! Borrel Recept Ontgrendeld</h2>
+          <p>Tijd om dit borrelhapje samen te maken in de echte keuken op Landgoed De Vossenbergh!</p>
+        </div>
+
+        <div class="modal-body" id="modal-recipe-content"></div>
+
+        <div class="modal-footer">
+          <button id="btn-print-recipe" class="btn-primary">🖨️ Print / Opslaan als PDF</button>
+          <button id="btn-close-modal" class="btn-secondary">Sluit en Speel Verder</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
