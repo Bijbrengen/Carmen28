@@ -1,16 +1,17 @@
 /* ==========================================================================
-   VOSSENBERG VEGAN FARM - GAME ENGINE & LOGIC (CARMEN'S 28E VERJAARDAG EDITIE)
+   VOSSENBERG VEGAN FARM - GAME ENGINE & LOGIC (WITH CARMEN 28.MP3 AUDIO PLAYER)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
   
-  // Game State (All inventory initialized to 0 for authentic farming progression!)
+  // Game State
   const state = {
     totalLand: 100, // m²
     usedLand: 0,    // m²
     stars: 280,
     humus: 0,
     selectedCrop: 'paprika',
+    isPlayingAudio: false,
     inventory: {
       haver: 0,
       zonnebloem: 0,
@@ -36,6 +37,32 @@ document.addEventListener('DOMContentLoaded', () => {
       timer: null
     }))
   };
+
+  // Audio Control Setup (Carmen 28.mp3)
+  const bgMusicEl = document.getElementById('bg-music');
+  const btnSoundEl = document.getElementById('btn-sound');
+
+  if (btnSoundEl && bgMusicEl) {
+    btnSoundEl.addEventListener('click', () => {
+      if (state.isPlayingAudio) {
+        bgMusicEl.pause();
+        state.isPlayingAudio = false;
+        btnSoundEl.textContent = '🔇';
+        btnSoundEl.title = 'Muziek afspelen (Carmen 28.mp3)';
+        logMessage(`🔇 Muziek gepauzeerd.`);
+      } else {
+        bgMusicEl.play().then(() => {
+          state.isPlayingAudio = true;
+          btnSoundEl.textContent = '🔊';
+          btnSoundEl.title = 'Muziek pauzeren (Carmen 28.mp3)';
+          logMessage(`🎵 Carmen 28.mp3 wordt nu feestelijk afgespeeld! 🎂🎈`);
+        }).catch(err => {
+          console.warn('Audio playback error:', err);
+          logMessage(`⚠️ Kon muziek niet automatisch starten. Klik opnieuw op 🔊!`);
+        });
+      }
+    });
+  }
 
   // Crop Metadata Definition (With Greenhouse Climate Badges)
   const CROP_DATA = {
@@ -526,5 +553,5 @@ document.addEventListener('DOMContentLoaded', () => {
   renderLandGrid();
   renderQuiz();
   updateCompostSelect();
-  logMessage(`🎉 Van harte gefeliciteerd Carmen met je 28e verjaardag! Welkom op Landgoed De Vossenberg.`);
+  logMessage(`🎉 Van harte gefeliciteerd Carmen met je 28e verjaardag! Klik op 🔊 om Carmen 28.mp3 af te spelen!`);
 });
