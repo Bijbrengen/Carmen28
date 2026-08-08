@@ -1,5 +1,5 @@
 /* ==========================================================================
-   VOSSENBERGH VEGAN FARM - GAME ENGINE & LOGIC (ZERO INITIAL INVENTORY)
+   VOSSENBERG VEGAN FARM - GAME ENGINE & LOGIC (CARMEN'S 28E VERJAARDAG EDITIE)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const state = {
     totalLand: 100, // m²
     usedLand: 0,    // m²
-    stars: 50,
+    stars: 280,
     humus: 0,
     selectedCrop: 'paprika',
     inventory: {
@@ -44,9 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
     walnoot: { name: "Walnotenboom", emoji: "🌰", growTime: 7000, desc: "Voor verse walnoten in Muhammara", climate: "Weide" },
     tuinkruiden: { name: "Bieslook & Peterselie", emoji: "🌿", growTime: 3000, desc: "Voor Heks'nkaas & Party Toastjes", climate: "Weide" },
     linzen: { name: "Linzen (Peulvruchten)", emoji: "🫘", growTime: 5000, desc: "Voor BioToday Linzenchips", climate: "Weide" },
-    aubergine: { name: "Aubergines", emoji: "🍆", growTime: 6000, desc: "Voor AH Terra Baba Ganoush", climate: "🌡️ De Vossenbergh Kas" },
-    cassave: { name: "Cassave Wortelknol", emoji: "🍠", growTime: 8000, desc: "Voor Samasaya Toku Kroepoek", climate: "🌡️ De Vossenbergh Kas" },
-    citroen: { name: "Citroenbomen", emoji: "🍋", growTime: 6000, desc: "Voor frisse zuren in dips", climate: "🌡️ De Vossenbergh Kas" },
+    aubergine: { name: "Aubergines", emoji: "🍆", growTime: 6000, desc: "Voor AH Terra Baba Ganoush", climate: "🌡️ De Vossenberg Kas" },
+    cassave: { name: "Cassave Wortelknol", emoji: "🍠", growTime: 8000, desc: "Voor Samasaya Toku Kroepoek", climate: "🌡️ De Vossenberg Kas" },
+    citroen: { name: "Citroenbomen", emoji: "🍋", growTime: 6000, desc: "Voor frisse zuren in dips", climate: "🌡️ De Vossenberg Kas" },
     haver: { name: "Haver", emoji: "🌾", growTime: 4000, desc: "Voor havermelk & cappuccino", climate: "Weide" },
     zonnebloem: { name: "Zonnebloemen", emoji: "🌻", growTime: 6000, desc: "Voor koudgeperste zonnebloemolie", climate: "Weide" },
     spelt: { name: "Spelt & Tarwe", emoji: "🥖", growTime: 5000, desc: "Meel voor LU Crackers & Toastjes", climate: "Weide" },
@@ -330,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.getElementById('unlock-count').textContent = state.unlockedRecipes.length;
-    logMessage(`🎉 BEREID! ${recipeName} is klaar voor de Vegan Borrelplank! +120 Chef Sterren ⭐`);
+    logMessage(`🎉 BEREID! ${recipeName} is klaar voor Carmen's Verjaardags-Borrelplank! +120 Chef Sterren ⭐`);
     updateResourceUI();
     updateCompostSelect();
 
@@ -420,7 +420,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btn-feed-animals').addEventListener('click', () => {
     const cropKey = Object.keys(state.inventory).find(k => state.inventory[k] >= 10);
     if (!cropKey || !CROP_DATA[cropKey]) {
-      logMessage(`Je hebt minstens 10 m² gewas nodig om de dieren op de Vossenbergh te voeren!`);
+      logMessage(`Je hebt minstens 10 m² gewas nodig om de dieren op De Vossenberg te voeren!`);
       return;
     }
 
@@ -469,7 +469,7 @@ document.addEventListener('DOMContentLoaded', () => {
       content = `
         <h3>🍆 AH Terra Baba Ganoush (Rokerige Auberginedip)</h3>
         <p><strong>Ingrediënten:</strong></p>
-        <div class="recipe-step-item">• 2 grote aubergines (uit De Vossenbergh Kas)</div>
+        <div class="recipe-step-item">• 2 grote aubergines (uit De Vossenberg Kas)</div>
         <div class="recipe-step-item">• 2 el tahin (sesampasta) & 1 teentje knoflook</div>
         <div class="recipe-step-item">• 2 el vers citroensap & peterselie voor de garnituur</div>
         <br>
@@ -526,5 +526,5 @@ document.addEventListener('DOMContentLoaded', () => {
   renderLandGrid();
   renderQuiz();
   updateCompostSelect();
-  logMessage(`Welkom op Vossenbergh Vegan Farm! De voorraadkast is leeg. Begin met inzaaien & oogsten in de weide!`);
+  logMessage(`🎉 Van harte gefeliciteerd Carmen met je 28e verjaardag! Welkom op Landgoed De Vossenberg.`);
 });
