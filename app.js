@@ -1,30 +1,30 @@
 /* ==========================================================================
-   VOSSENBERGH VEGAN FARM - GAME ENGINE & LOGIC (WITH REAL BORRELPLANK PRODUCTS)
+   VOSSENBERGH VEGAN FARM - GAME ENGINE & LOGIC (ZERO INITIAL INVENTORY)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
   
-  // Game State
+  // Game State (All inventory initialized to 0 for authentic farming progression!)
   const state = {
     totalLand: 100, // m²
     usedLand: 0,    // m²
-    stars: 120,
-    humus: 1,
+    stars: 50,
+    humus: 0,
     selectedCrop: 'paprika',
     inventory: {
-      haver: 20,
-      zonnebloem: 30,
-      spelt: 40,
-      lijnzaad: 30,
-      kikkererwt: 20,
-      paprika: 30,
-      knoflook: 20,
-      walnoot: 20,
-      linzen: 40,
-      tuinkruiden: 20,
-      aubergine: 30,
-      cassave: 30,
-      citroen: 20
+      haver: 0,
+      zonnebloem: 0,
+      spelt: 0,
+      lijnzaad: 0,
+      kikkererwt: 0,
+      paprika: 0,
+      knoflook: 0,
+      walnoot: 0,
+      linzen: 0,
+      tuinkruiden: 0,
+      aubergine: 0,
+      cassave: 0,
+      citroen: 0
     },
     unlockedRecipes: [],
     quizIndex: 0,
@@ -39,19 +39,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Crop Metadata Definition (With Greenhouse Climate Badges)
   const CROP_DATA = {
-    paprika: { name: "Rode Paprika & Pepers", emoji: "🫑", growTime: 5000, desc: "Voor Maza Muhammara & Kroepoek", climate: "Volle Grond" },
-    knoflook: { name: "Knoflook & Uien", emoji: "🧄", growTime: 4000, desc: "Smaakmaker voor Heks'nkaas & Dips", climate: "Volle Grond" },
-    walnoot: { name: "Walnotenboom", emoji: "🌰", growTime: 7000, desc: "Voor verse walnoten in Muhammara", climate: "Erf / Volle Grond" },
-    tuinkruiden: { name: "Bieslook & Peterselie", emoji: "🌿", growTime: 3000, desc: "Voor Heks'nkaas & Party Toastjes", climate: "Volle Grond" },
-    linzen: { name: "Linzen (Peulvruchten)", emoji: "🫘", growTime: 5000, desc: "Voor BioToday Linzenchips", climate: "Volle Grond" },
+    paprika: { name: "Rode Paprika & Pepers", emoji: "🫑", growTime: 5000, desc: "Voor Maza Muhammara & Kroepoek", climate: "Weide" },
+    knoflook: { name: "Knoflook & Uien", emoji: "🧄", growTime: 4000, desc: "Smaakmaker voor Heks'nkaas & Dips", climate: "Weide" },
+    walnoot: { name: "Walnotenboom", emoji: "🌰", growTime: 7000, desc: "Voor verse walnoten in Muhammara", climate: "Weide" },
+    tuinkruiden: { name: "Bieslook & Peterselie", emoji: "🌿", growTime: 3000, desc: "Voor Heks'nkaas & Party Toastjes", climate: "Weide" },
+    linzen: { name: "Linzen (Peulvruchten)", emoji: "🫘", growTime: 5000, desc: "Voor BioToday Linzenchips", climate: "Weide" },
     aubergine: { name: "Aubergines", emoji: "🍆", growTime: 6000, desc: "Voor AH Terra Baba Ganoush", climate: "🌡️ De Vossenbergh Kas" },
     cassave: { name: "Cassave Wortelknol", emoji: "🍠", growTime: 8000, desc: "Voor Samasaya Toku Kroepoek", climate: "🌡️ De Vossenbergh Kas" },
     citroen: { name: "Citroenbomen", emoji: "🍋", growTime: 6000, desc: "Voor frisse zuren in dips", climate: "🌡️ De Vossenbergh Kas" },
-    haver: { name: "Haver", emoji: "🌾", growTime: 4000, desc: "Voor havermelk & cappuccino", climate: "Volle Grond" },
-    zonnebloem: { name: "Zonnebloemen", emoji: "🌻", growTime: 6000, desc: "Voor koudgeperste zonnebloemolie", climate: "Volle Grond" },
-    spelt: { name: "Spelt & Tarwe", emoji: "🥖", growTime: 5000, desc: "Meel voor LU Crackers & Toastjes", climate: "Volle Grond" },
-    lijnzaad: { name: "Lijnzaad", emoji: "🟤", growTime: 5000, desc: "Vegan ei-vervanger (binding)", climate: "Volle Grond" },
-    kikkererwt: { name: "Kikkererwten", emoji: "🧆", growTime: 7000, desc: "Voor Aquafaba & Vegan Mayo", climate: "Volle Grond" }
+    haver: { name: "Haver", emoji: "🌾", growTime: 4000, desc: "Voor havermelk & cappuccino", climate: "Weide" },
+    zonnebloem: { name: "Zonnebloemen", emoji: "🌻", growTime: 6000, desc: "Voor koudgeperste zonnebloemolie", climate: "Weide" },
+    spelt: { name: "Spelt & Tarwe", emoji: "🥖", growTime: 5000, desc: "Meel voor LU Crackers & Toastjes", climate: "Weide" },
+    lijnzaad: { name: "Lijnzaad", emoji: "🟤", growTime: 5000, desc: "Vegan ei-vervanger (binding)", climate: "Weide" },
+    kikkererwt: { name: "Kikkererwten", emoji: "🧆", growTime: 7000, desc: "Voor Aquafaba & Vegan Mayo", climate: "Weide" }
   };
 
   // E-Number & Hidden Ingredient Detective Questions
@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (!hasItems) {
-      inventoryTagsEl.innerHTML = '<span class="inv-tag">Geen voorraad</span>';
+      inventoryTagsEl.innerHTML = '<span class="inv-tag">Geen voorraad (Zaai eerst in de weide!)</span>';
     }
   }
 
@@ -316,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (!canCook) {
-      logMessage(`❌ Onvoldoende grondstoffen voor ${recipeName}! Je mist nog: ${missingText.join(', ')}.`, 'warning');
+      logMessage(`❌ Onvoldoende voorraad voor ${recipeName}! Je mist nog: ${missingText.join(', ')}. Zaai & oogst eerst in de weide!`, 'warning');
       return;
     }
 
@@ -526,5 +526,5 @@ document.addEventListener('DOMContentLoaded', () => {
   renderLandGrid();
   renderQuiz();
   updateCompostSelect();
-  logMessage(`Welkom op Vossenbergh Vegan Farm! Verbouw gewassen in de weide & kas voor de Vegan Borrelplank.`);
+  logMessage(`Welkom op Vossenbergh Vegan Farm! De voorraadkast is leeg. Begin met inzaaien & oogsten in de weide!`);
 });
