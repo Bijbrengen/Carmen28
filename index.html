@@ -68,30 +68,16 @@
       <!-- Left Panel: Crop Selector & Action Tools -->
       <aside class="sidebar glass-panel">
         <nav class="sidebar-tabs">
-          <button class="tab-link active" data-tab="crops">🌾 Gewassen</button>
-          <button class="tab-link" data-tab="recipes">🧀 Borrelplank Keuken</button>
+          <button class="tab-link active" data-tab="recipes">🧀 Borrelplank Keuken</button>
+          <button class="tab-link" data-tab="crops">🌾 Gewassen</button>
           <button class="tab-link" data-tab="detective">🔍 E-Nummer Detective</button>
           <button class="tab-link" data-tab="compost">♻️ Compost & Ruil</button>
         </nav>
 
         <div class="tab-body">
           
-          <!-- TAB 1: CROPS & SEEDS -->
-          <div class="tab-content active" id="tab-crops">
-            <h3 class="panel-heading">Gewassen & Kas-Teelt (per 10 m²)</h3>
-            <p class="panel-sub">Kies gewassen voor de <strong>Weide (onderaan foto)</strong> of <strong>De Vossenbergh Kas</strong>.</p>
-
-            <div class="crop-grid" id="crop-selector">
-              <!-- Dynamically rendered by app.js -->
-            </div>
-
-            <div class="quick-actions">
-              <button id="btn-harvest-all" class="btn-primary-glow">🌾 Oogst Alle Volgroeide Gewassen</button>
-            </div>
-          </div>
-
-          <!-- TAB 2: KITCHEN & RECIPES -->
-          <div class="tab-content" id="tab-recipes">
+          <!-- TAB 1: BORRELPLANK KITCHEN & RECIPES (FIRST TAB ON LEFT) -->
+          <div class="tab-content active" id="tab-recipes">
             <h3 class="panel-heading">De Vegan Borrelplank Keuken</h3>
             <p class="panel-sub">Combineer verhoudingen van bekende supermarktproducten!</p>
 
@@ -201,6 +187,20 @@
             </div>
           </div>
 
+          <!-- TAB 2: CROPS & SEEDS -->
+          <div class="tab-content" id="tab-crops">
+            <h3 class="panel-heading">Gewassen & Kas-Teelt (per 10 m²)</h3>
+            <p class="panel-sub">Kies gewassen voor de <strong>Weide (onderaan foto)</strong> of <strong>De Vossenbergh Kas</strong>.</p>
+
+            <div class="crop-grid" id="crop-selector">
+              <!-- Dynamically rendered by app.js -->
+            </div>
+
+            <div class="quick-actions">
+              <button id="btn-harvest-all" class="btn-primary-glow">🌾 Oogst Alle Volgroeide Gewassen</button>
+            </div>
+          </div>
+
           <!-- TAB 3: E-NUMBER DETECTIVE -->
           <div class="tab-content" id="tab-detective">
             <h3 class="panel-heading">🔍 E-Nummer Detective</h3>
@@ -276,7 +276,7 @@
         </div>
 
         <div class="game-log-bar" id="game-log">
-          <span class="log-time">06:05</span>
+          <span class="log-time">06:12</span>
           <span class="log-text">Welkom op Landgoed De Vossenbergh! Carmen bewerkt de 10 m² kavel onderin de weide.</span>
         </div>
 
