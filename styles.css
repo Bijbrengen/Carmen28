@@ -1,5 +1,5 @@
 /* ==========================================================================
-   VOSSENBERGH VEGAN FARM - FULLY RESPONSIVE DESIGN SYSTEM
+   VOSSENBERGH VEGAN FARM - FULLY RESPONSIVE DESIGN SYSTEM (TRANSPARENT MAP OVERLAY)
    ========================================================================== */
 
 :root {
@@ -581,7 +581,7 @@ body {
   position: relative;
   border: 1px solid var(--border-glass);
   border-radius: var(--radius-lg);
-  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.6);
   background-image: url('Droneview recht van boven.png');
   background-size: cover;
   background-position: center center;
@@ -597,29 +597,30 @@ body {
 
 .drone-map-overlay-banner {
   align-self: flex-start;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
   border: 1px solid var(--color-primary);
   padding: 0.45rem 0.85rem;
   border-radius: var(--radius-md);
   font-size: 0.75rem;
   color: var(--color-primary);
   font-weight: 700;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
-/* Meadow Overlay Wrapper placed over bottom meadow of photo */
+/* Semi-Transparent Glassmorphism Meadow Overlay (Drone Photo Grass Visible!) */
 .land-grid-meadow-wrapper {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
-  background: rgba(8, 24, 16, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 2px solid var(--color-primary);
+  background: rgba(8, 24, 16, 0.3); /* Ultra transparent so meadow photo shows through! */
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border: 2px stroke var(--color-primary);
+  border: 2px dashed rgba(52, 211, 153, 0.8);
   border-radius: var(--radius-lg);
   padding: 0.85rem;
-  box-shadow: 0 0 35px rgba(52, 211, 153, 0.45);
+  box-shadow: 0 0 30px rgba(52, 211, 153, 0.35);
 }
 
 .meadow-label-tag {
@@ -628,14 +629,16 @@ body {
   justify-content: space-between;
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--color-primary);
+  color: #ffffff;
   margin-bottom: 0.5rem;
-  padding: 0.25rem 0.6rem;
-  background: rgba(52, 211, 153, 0.15);
+  padding: 0.3rem 0.75rem;
+  background: rgba(0, 0, 0, 0.65); /* Dark pill header for high text readability */
+  backdrop-filter: blur(8px);
   border-radius: var(--radius-sm);
-  border: 1px solid rgba(52, 211, 153, 0.3);
+  border: 1px solid rgba(52, 211, 153, 0.5);
   flex-wrap: wrap;
   gap: 0.25rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .meadow-subtext {
@@ -643,7 +646,7 @@ body {
   color: var(--color-accent-gold);
 }
 
-/* 10x10 Land Grid Tile System */
+/* 10x10 Land Grid Tile System (Semi-Transparent Glass Tiles) */
 .land-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -653,8 +656,9 @@ body {
 }
 
 .land-tile {
-  background: radial-gradient(circle at 50% 50%, rgba(31, 64, 46, 0.9) 0%, rgba(14, 32, 23, 0.95) 100%);
-  border: 2px solid var(--border-glass);
+  background: rgba(14, 38, 25, 0.35); /* Translucent fill showing underlying drone photo */
+  backdrop-filter: blur(3px);
+  border: 2px stroke rgba(255, 255, 255, 0.3);
   border-radius: var(--radius-md);
   display: flex;
   flex-direction: column;
@@ -663,48 +667,53 @@ body {
   position: relative;
   cursor: pointer;
   padding: 0.65rem 0.35rem;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
   user-select: none;
   min-height: 85px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 .land-tile:hover {
-  transform: translateY(-3px) scale(1.02);
+  background: rgba(52, 211, 153, 0.25);
+  transform: translateY(-3px) scale(1.03);
   border-color: var(--color-primary);
-  box-shadow: 0 6px 20px rgba(52, 211, 153, 0.4);
+  box-shadow: 0 8px 25px rgba(52, 211, 153, 0.6);
 }
 
 .land-tile.empty {
-  border: 2px dashed rgba(255, 255, 255, 0.3);
+  border: 2px dashed rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.25);
 }
 
 .tile-emoji {
   font-size: 1.8rem;
   margin-bottom: 0.15rem;
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.6));
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.8));
 }
 
 .tile-label {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: white;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #ffffff;
   text-align: center;
   line-height: 1.1;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9), 0 0 8px rgba(0, 0, 0, 0.9);
 }
 
 .tile-m2 {
-  font-size: 0.6rem;
+  font-size: 0.62rem;
   color: var(--color-primary);
-  font-weight: 600;
+  font-weight: 700;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
 }
 
 .tile-progress {
   position: absolute;
   bottom: 5px;
   width: 80%;
-  height: 4px;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 2px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 3px;
   overflow: hidden;
 }
 
@@ -864,10 +873,9 @@ body {
 /* Tablets & Small Laptops (< 1024px) */
 @media (max-width: 1024px) {
   .game-layout {
-    grid-template-columns: 1fr; /* Stack map viewport & sidebar vertically */
+    grid-template-columns: 1fr;
   }
 
-  /* Show Map Viewport FIRST on mobile/tablet, then Sidebar SECOND */
   .viewport-section {
     order: 1;
   }
@@ -937,7 +945,6 @@ body {
     padding: 0.5rem;
   }
 
-  /* Switch land grid tiles to 2 columns x 5 rows on small screens */
   .land-grid {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(5, 1fr);
